@@ -1,0 +1,12 @@
+<div class="slider">
+  <div class="slide">
+    <img [src]="slider[index]?.img" alt="">
+    <div>{{slider[index].text}}</div>
+  </div>
+  <div class="dots">
+    <div [ngStyle]="index==0 ? active : not" ></div>
+    <div [ngStyle]="index==1 ? active : not"></div>
+    <div [ngStyle]="index==2 ? active : not"></div>
+  </div>
+</div>
+

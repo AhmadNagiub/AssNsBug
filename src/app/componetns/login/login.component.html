@@ -1,0 +1,58 @@
+<div id='login'>
+  <div class="container">
+    <div class="slider">
+      <app-slider></app-slider>
+    </div>
+
+    <div class="form">
+      <div class="contain">
+        <div class="logo">LOGO</div>
+        <h2> Log in to instabug</h2>
+        <div class="social" *ngFor="let social of socials" [ngStyle]="{'background-color':social.bg , 'color':social.iconColor}">
+          <div class="socialIcon" [ngStyle]="{'background-color':social.iconbg}">
+            <img [src]="social.icon" alt="">
+          </div>
+          <div class="socialName">{{social.name}}</div>
+        </div>
+        <div class="orLine">
+  
+          <div class="separator">
+            <div class="line"></div>
+            <h2>OR</h2>
+            <div class="line"></div>
+          </div>
+        </div>
+        <div *ngIf="msg" class="Errors">
+          {{msg}}
+        </div>
+        <form [formGroup]="login" (ngSubmit)="login.valid&&formData()">
+          <div class="label">
+            <label for="">Work Email</label>
+          </div>
+          <input formControlName="email"  type="text" placeholder="you@company.com">
+          <div class="Errors"*ngIf="errorCheck('email')">
+            <div>Email is invalid</div>
+          </div>
+          <div class="label">
+            <label for="">Password</label>   <span>Forgot Password?</span>
+          </div>      
+          <input formControlName="password" type="text" placeholder="+characters">
+          <div class="Errors" *ngIf="errorCheck('password')">
+            
+            <div *ngIf="login.get('password')?.value.length < 6">Password must be more than 6 characters</div>
+            
+            <div *ngIf="login.get('password')?.value.length > 6">Password must be at least contain one upperCase and number</div>
+          </div>
+          
+          <input type="submit" value="Log in" [ngStyle]="login.valid ? isStyleInvalid : isStyleValid" [disabled]="login.invalid" >
+        </form>
+        <div class="msg">
+          <span>Don't have an account? <span class="col">Sign Up</span></span>
+          <span class="col">Login via SSO</span>
+        </div>
+        <h3>Trusted by the top companies.</h3>
+        <div class="supports"></div>
+      </div>
+    </div>
+  </div>
+</div>
